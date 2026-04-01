@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Agenda — Portal Uninove</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --rosa: #E89AB0; --nude: #F5E6E8; --texto: #3d2830; }
+        body { font-family: 'Poppins', sans-serif; background: var(--nude); color: var(--texto); display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; text-align: center; }
+        .container { background: #fff; padding: 50px; border-radius: 30px; box-shadow: 0 20px 50px rgba(232,154,176,0.2); max-width: 600px; width: 90%; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--rosa); margin-bottom: 10px; }
+        p { margin-bottom: 40px; color: #7a6068; }
+        .links { display: flex; flex-direction: column; gap: 15px; }
+        .btn { padding: 15px; border-radius: 15px; text-decoration: none; font-weight: 600; transition: 0.3s; border: 2px solid var(--rosa); color: var(--rosa); }
+        .btn:hover { background: var(--rosa); color: #fff; transform: translateY(-3px); }
+        .footer { margin-top: 40px; font-size: 0.8rem; opacity: 0.6; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Glow Agenda ✨</h1>
+        <p>Projeto de ADS — 1º Semestre Uninove<br>Selecione a versão que deseja visualizar:</p>
+        <div class="links">
+            <a href="v1-inicio/index.html" class="btn">Versão 1: Início (Básico)</a>
+            <a href="v2-intermediaria/index.html" class="btn">Versão 2: Intermediária (Completo)</a>
+            <a href="v3-pro/index.html" class="btn">Versão 3: Pro (PWA & Avançado)</a>
+        </div>
+        <div class="footer">© 2026 — Raydev15 | Uninove ADS</div>
+    </div>
+</body>
+</html>
