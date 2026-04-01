@@ -3,16 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Glow Agenda ✨ — Beleza & Bem-Estar</title>
+  <title>Glow Agenda ✨ — Luxo & Bem-Estar</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="manifest" href="manifest.json" />
-  <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
@@ -20,108 +16,86 @@
   <!-- ===== HEADER ===== -->
   <header class="header">
     <div class="header__inner">
-      <div class="header__logo" onclick="showPage('home')">
+      <div class="header__logo" onclick="showPage("home")">
         <i data-lucide="sparkles" class="logo-icon"></i>
         <span class="logo-text">Glow Agenda</span>
       </div>
       <nav class="header__nav">
-        <a href="javascript:void(0)" onclick="showPage('home')">Início</a>
-        <a href="javascript:void(0)" onclick="showPage('servicos')">Serviços</a>
-        <a href="javascript:void(0)" onclick="showPage('agendar')">Agendar</a>
-        <a href="javascript:void(0)" onclick="showPage('meus-agendamentos')">Meus Horários</a>
-        <a href="javascript:void(0)" onclick="showPage('sobre')">Sobre & FAQ</a>
+        <a href="javascript:void(0)" onclick="showPage("home")" class="nav-link active">Início</a>
+        <a href="javascript:void(0)" onclick="showPage("servicos")" class="nav-link">Serviços</a>
+        <a href="javascript:void(0)" onclick="showPage("agendar")" class="nav-link">Agendar</a>
+        <a href="javascript:void(0)" onclick="showPage("meus-agendamentos")" class="nav-link">Meus Horários</a>
+        <a href="javascript:void(0)" onclick="showPage("sobre")" class="nav-link">Sobre & FAQ</a>
       </nav>
-      <button class="btn-menu" id="btnMenu" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="header__actions">
+        <button class="btn-login" id="btnLogin" onclick="openLoginModal()">
+          <i data-lucide="user"></i> <span id="userStatus">Entrar</span>
+        </button>
+      </div>
     </div>
-    <nav class="mobile-nav" id="mobileNav">
-      <a href="javascript:void(0)" onclick="showPage('home'); closeMobileNav()">Início</a>
-      <a href="javascript:void(0)" onclick="showPage('servicos'); closeMobileNav()">Serviços</a>
-      <a href="javascript:void(0)" onclick="showPage('agendar'); closeMobileNav()">Agendar</a>
-      <a href="javascript:void(0)" onclick="showPage('meus-agendamentos'); closeMobileNav()">Meus Horários</a>
-    </nav>
   </header>
 
   <!-- ===== PÁGINA: HOME ===== -->
   <main class="page active" id="page-home">
     <section class="hero">
       <div class="hero__content">
-        <p class="hero__eyebrow">Bem-vinda ao seu espaço de beleza</p>
-        <h1 class="hero__title">Realce sua<br /><em>beleza natural</em></h1>
+        <p class="hero__eyebrow">Experiência Exclusiva</p>
+        <h1 class="hero__title">Sua beleza em<br /><em>perfeita harmonia</em></h1>
         <p class="hero__subtitle">
-          Agende seu horário de forma rápida, fácil e elegante. Nossos
-          profissionais estão prontos para cuidar de você.
+          O sistema de agendamento mais sofisticado para quem não abre mão do cuidado e da elegância.
         </p>
         <div class="hero__actions">
-          <button onclick="showPage('agendar')" class="btn btn--primary">Agendar Agora</button>
-          <button onclick="showPage('servicos')" class="btn btn--outline">Ver Serviços</button>
+          <button onclick="showPage("agendar")" class="btn btn--primary">Agendar Agora</button>
+          <button onclick="showPage("servicos")" class="btn btn--outline">Explorar Serviços</button>
         </div>
       </div>
       <div class="hero__visual">
         <div class="hero__blob"></div>
-        <div class="hero__card hero__card--1">
-          <i data-lucide="scissors" class="card-icon"></i>
-          <span>Cabelo</span>
-        </div>
-        <div class="hero__card hero__card--2">
-          <i data-lucide="palette" class="card-icon"></i>
-          <span>Unhas</span>
-        </div>
-        <div class="hero__card hero__card--3">
-          <i data-lucide="flower-2" class="card-icon"></i>
-          <span>Estética</span>
-        </div>
+        <div class="hero__card hero__card--1"><i data-lucide="scissors"></i> <span>Cabelo</span></div>
+        <div class="hero__card hero__card--2"><i data-lucide="palette"></i> <span>Unhas</span></div>
+        <div class="hero__card hero__card--3"><i data-lucide="flower-2"></i> <span>Estética</span></div>
       </div>
     </section>
   </main>
 
   <!-- ===== PÁGINA: SERVIÇOS ===== -->
   <main class="page" id="page-servicos">
-    <section class="servicos">
-      <div class="container">
-        <div class="section-header">
-          <p class="section-eyebrow">O que oferecemos</p>
-          <h2 class="section-title">Nossos Serviços</h2>
-          <p class="section-subtitle">
-            Cada detalhe pensado para realçar sua beleza com cuidado e sofisticação.
-          </p>
+    <section class="container">
+      <div class="section-header">
+        <h2 class="section-title">Menu de Serviços</h2>
+        <p class="section-desc">Tratamentos premium com os melhores profissionais.</p>
+      </div>
+      <div class="servicos__grid">
+        <div class="servico-card">
+          <div class="servico-card__icon"><i data-lucide="scissors"></i></div>
+          <h3>Cabelo</h3>
+          <ul>
+            <li>Corte Visagista</li>
+            <li>Mechas & Balayage</li>
+            <li>Hidratação de Luxo</li>
+          </ul>
+          <span class="servico-card__tag">A partir de R$ 120</span>
         </div>
-        <div class="servicos__grid">
-          <div class="servico-card">
-            <div class="servico-card__icon"><i data-lucide="scissors"></i></div>
-            <h3>Cabelo</h3>
-            <ul>
-              <li>Corte feminino</li>
-              <li>Coloração & mechas</li>
-              <li>Hidratação profunda</li>
-              <li>Escova modeladora</li>
-            </ul>
-            <span class="servico-card__tag">A partir de R$ 80</span>
-          </div>
-          <div class="servico-card servico-card--featured">
-            <div class="servico-card__badge">Popular</div>
-            <div class="servico-card__icon"><i data-lucide="sparkles"></i></div>
-            <h3>Unhas</h3>
-            <ul>
-              <li>Manicure completa</li>
-              <li>Pedicure completa</li>
-              <li>Gel & acrigel</li>
-              <li>Nail art personalizada</li>
-            </ul>
-            <span class="servico-card__tag">A partir de R$ 45</span>
-          </div>
-          <div class="servico-card">
-            <div class="servico-card__icon"><i data-lucide="eye"></i></div>
-            <h3>Sobrancelha & Cílios</h3>
-            <ul>
-              <li>Design de sobrancelha</li>
-              <li>Henna de sobrancelha</li>
-              <li>Extensão de cílios</li>
-              <li>Lash lifting</li>
-            </ul>
-            <span class="servico-card__tag">A partir de R$ 35</span>
-          </div>
+        <div class="servico-card featured">
+          <div class="servico-card__badge">Mais Procurado</div>
+          <div class="servico-card__icon"><i data-lucide="sparkles"></i></div>
+          <h3>Unhas</h3>
+          <ul>
+            <li>Manicure Russa</li>
+            <li>Alongamento em Gel</li>
+            <li>Blindagem de Diamante</li>
+          </ul>
+          <span class="servico-card__tag">A partir de R$ 60</span>
+        </div>
+        <div class="servico-card">
+          <div class="servico-card__icon"><i data-lucide="eye"></i></div>
+          <h3>Olhar</h3>
+          <ul>
+            <li>Design de Sobrancelha</li>
+            <li>Extensão de Cílios</li>
+            <li>Lash Lifting</li>
+          </ul>
+          <span class="servico-card__tag">A partir de R$ 45</span>
         </div>
       </div>
     </section>
@@ -129,61 +103,50 @@
 
   <!-- ===== PÁGINA: AGENDAR ===== -->
   <main class="page" id="page-agendar">
-    <section class="agendar">
-      <div class="container">
-        <div class="section-header">
-          <p class="section-eyebrow">Reserve seu horário</p>
-          <h2 class="section-title">Agendar Atendimento</h2>
-        </div>
-        <div class="agendar__wrapper">
-          <form class="agendar__form" id="formAgendamento" novalidate>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="nome">Nome completo <span class="required">*</span></label>
-                <input type="text" id="nome" name="nome" placeholder="Seu nome completo" />
-                <span class="form-error" id="erroNome"></span>
-              </div>
-              <div class="form-group">
-                <label for="telefone">Telefone / WhatsApp <span class="required">*</span></label>
-                <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-0000" />
-                <span class="form-error" id="erroTelefone"></span>
-              </div>
+    <section class="container">
+      <div class="section-header">
+        <h2 class="section-title">Agendar Horário</h2>
+        <p class="section-desc">Escolha o melhor momento para o seu cuidado.</p>
+      </div>
+      <div class="agendar__form-container">
+        <form id="formAgendamento" class="agendar__form">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nome Completo</label>
+              <input type="text" id="nome" placeholder="Seu nome" required />
             </div>
             <div class="form-group">
-              <label for="servico">Serviço desejado <span class="required">*</span></label>
-              <select id="servico" name="servico">
-                <option value="">Selecione um serviço</option>
-                <option value="Corte feminino">Corte feminino</option>
-                <option value="Manicure completa">Manicure completa</option>
-                <option value="Design de sobrancelha">Design de sobrancelha</option>
+              <label>WhatsApp</label>
+              <input type="tel" id="telefone" placeholder="(11) 99999-0000" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Serviço</label>
+            <select id="servico" required>
+              <option value="">Selecione um serviço</option>
+              <option value="Cabelo">Cabelo</option>
+              <option value="Unhas">Unhas</option>
+              <option value="Sobrancelha">Sobrancelha</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Data</label>
+              <input type="date" id="data" required />
+            </div>
+            <div class="form-group">
+              <label>Horário</label>
+              <select id="hora" required>
+                <option value="">Selecione</option>
+                <option value="09:00">09:00</option>
+                <option value="10:00">10:00</option>
+                <option value="14:00">14:00</option>
+                <option value="16:00">16:00</option>
               </select>
-              <span class="form-error" id="erroServico"></span>
             </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="data">Data <span class="required">*</span></label>
-                <input type="date" id="data" name="data" />
-                <span class="form-error" id="erroData"></span>
-              </div>
-              <div class="form-group">
-                <label for="hora">Horário <span class="required">*</span></label>
-                <select id="hora" name="hora">
-                  <option value="">Selecione o horário</option>
-                  <option value="09:00">09:00</option>
-                  <option value="10:00">10:00</option>
-                  <option value="11:00">11:00</option>
-                  <option value="14:00">14:00</option>
-                  <option value="15:00">15:00</option>
-                </select>
-                <span class="form-error" id="erroHora"></span>
-              </div>
-            </div>
-            <div id="formFeedback" class="form-feedback" role="alert"></div>
-            <button type="submit" class="btn btn--primary btn--full" id="btnAgendar">
-              Confirmar Agendamento
-            </button>
-          </form>
-        </div>
+          </div>
+          <button type="submit" class="btn btn--primary btn--full">Confirmar Agendamento</button>
+        </form>
       </div>
     </section>
   </main>
@@ -193,11 +156,10 @@
     <section class="container">
       <div class="section-header">
         <h2 class="section-title">Meus Horários</h2>
-        <p class="section-desc">Gerencie seus agendamentos salvos localmente.</p>
+        <p class="section-desc">Seus agendamentos salvos no banco de dados local.</p>
       </div>
       <div id="listaAgendamentos" class="agendamentos-grid">
         <!-- Inserido via JS -->
-        <p class="empty-msg">Nenhum agendamento encontrado.</p>
       </div>
     </section>
   </main>
@@ -207,85 +169,91 @@
     <section class="container">
       <div class="section-header">
         <h2 class="section-title">Sobre o Glow Agenda</h2>
-        <p class="section-desc">Conheça os problemas que resolvemos e tire suas dúvidas.</p>
+        <p class="section-desc">Soluções reais para clientes exigentes.</p>
       </div>
-
       <div class="info-grid">
-        <div class="info-card-v2">
+        <div class="info-card">
           <h3>5 Problemas que Resolvemos</h3>
           <ul class="list-v2">
-            <li><strong>1. Agendamento 24/7:</strong> Marque seu horário a qualquer hora, sem depender do horário comercial.</li>
-            <li><strong>2. Confirmação Instantânea:</strong> Chega de esperar o retorno do salão pelo WhatsApp.</li>
-            <li><strong>3. Histórico de Serviços:</strong> Tenha controle total de todos os seus atendimentos passados.</li>
-            <li><strong>4. Lembretes Automáticos:</strong> Reduzimos as faltas com avisos prévios sobre seu horário.</li>
-            <li><strong>5. Gestão de Tempo:</strong> Visualize todos os horários disponíveis e escolha o melhor para você.</li>
+            <li><strong>1. Agendamento 24/7:</strong> Marque seu horário a qualquer hora.</li>
+            <li><strong>2. Confirmação Instantânea:</strong> Sem esperas por retorno.</li>
+            <li><strong>3. Histórico de Serviços:</strong> Controle total dos seus atendimentos.</li>
+            <li><strong>4. Lembretes Inteligentes:</strong> Reduzimos faltas com avisos.</li>
+            <li><strong>5. Gestão de Tempo:</strong> Visualize horários disponíveis em tempo real.</li>
           </ul>
         </div>
-
-        <div class="info-card-v2">
+        <div class="info-card">
           <h3>Perguntas Frequentes (FAQ)</h3>
           <div class="faq-v2">
-            <div class="faq-item-v2">
+            <div class="faq-item">
               <strong>Posso desmarcar pelo site?</strong>
-              <p>Sim, na aba "Meus Horários" você pode cancelar qualquer agendamento futuro.</p>
+              <p>Sim, na aba "Meus Horários" você tem total autonomia.</p>
             </div>
-            <div class="faq-item-v2">
+            <div class="faq-item">
               <strong>O site é seguro?</strong>
-              <p>Sim, seus dados são armazenados localmente no seu navegador com total privacidade.</p>
-            </div>
-            <div class="faq-item-v2">
-              <strong>Quais serviços estão disponíveis?</strong>
-              <p>Oferecemos serviços de Cabelo, Unhas e Sobrancelhas com profissionais certificados.</p>
+              <p>Sim, utilizamos LocalStorage para privacidade total dos seus dados.</p>
             </div>
           </div>
         </div>
       </div>
-
       <div class="section-header" style="margin-top: 60px;">
         <h2 class="section-title">Feedback das Clientes</h2>
       </div>
-      <div class="feedback-grid-v2">
-        <div class="feedback-card-v2">
-          <p>"O Glow Agenda facilitou muito minha rotina. Consigo marcar minhas unhas até de madrugada se eu quiser!"</p>
+      <div class="feedback-grid">
+        <div class="feedback-card">
+          <p>"O Glow Agenda facilitou muito minha rotina. Consigo marcar minhas unhas até de madrugada!"</p>
           <span>— Fernanda Lima</span>
         </div>
-        <div class="feedback-card-v2">
+        <div class="feedback-card">
           <p>"Interface linda e muito fácil de usar. O melhor sistema de agendamento que já vi."</p>
           <span>— Roberta Souza</span>
-        </div>
-        <div class="feedback-card-v2">
-          <p>"Adorei poder ver meus horários salvos. Nunca mais esqueci um agendamento."</p>
-          <span>— Cláudia Mendes</span>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__bottom">
-        <p>&copy; 2026 Glow Agenda. Projeto Acadêmico Uninove.</p>
-        <p>Feito com <i data-lucide="heart" class="heart-icon"></i> para realçar sua beleza</p>
+  <!-- ===== MODAL: LOGIN ===== -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeLoginModal()"><i data-lucide="x"></i></button>
+      <h3>Acesse sua Conta</h3>
+      <p>Entre para gerenciar seus agendamentos exclusivos.</p>
+      <form id="formLogin" class="login-form">
+        <div class="form-group">
+          <label>E-mail</label>
+          <input type="email" id="loginEmail" placeholder="seu@email.com" required />
+        </div>
+        <div class="form-group">
+          <label>Senha</label>
+          <input type="password" id="loginSenha" placeholder="••••••••" required />
+        </div>
+        <button type="submit" class="btn btn--primary btn--full">Entrar no Sistema</button>
+      </form>
+      <div class="login-footer">
+        <p>Não tem conta? <a href="#">Cadastre-se</a></p>
       </div>
     </div>
-  </footer>
+  </div>
 
-  <!-- ===== MODAL DE SUCESSO ===== -->
-  <div class="modal-overlay" id="modalOverlay">
+  <!-- ===== MODAL: SUCESSO ===== -->
+  <div class="modal-overlay" id="successModal">
     <div class="modal">
-      <div class="modal__icon"><i data-lucide="check-circle-2"></i></div>
-      <h3>Agendamento Confirmado!</h3>
-      <p>Seu horário foi salvo com sucesso no seu navegador.</p>
-      <button class="btn btn--primary" onclick="closeModal()">Fechar</button>
+      <div class="modal__icon"><i data-lucide="check-circle"></i></div>
+      <h3>Sucesso!</h3>
+      <p id="successMsg">Ação realizada com sucesso.</p>
+      <button class="btn btn--primary" onclick="closeSuccessModal()">Fechar</button>
     </div>
   </div>
+
+  <footer class="footer">
+    <p>&copy; 2026 Glow Agenda. Projeto Acadêmico Uninove ADS.</p>
+  </footer>
 
   <script src="script.js"></script>
   <script>
     lucide.createIcons();
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js');
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("sw.js");
     }
   </script>
 </body>

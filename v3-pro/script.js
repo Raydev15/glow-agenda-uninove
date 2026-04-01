@@ -1,142 +1,165 @@
-/**
- * Glow Agenda ✨ — script.js
- * Lógica avançada para multi-páginas, PWA e simulação de agendamento (LocalStorage).
- * Projeto Acadêmico ADS - Uninove.
- */
-
 /* =====================================================
-   NAVEGAÇÃO MULTI-PÁGINAS
+   GLOW AGENDA PRO — script.js
+   Sistema de Login (5 Perfis) & Banco de Dados Local
    ===================================================== */
+
+// ── Banco de Dados Simulado (5 Perfis Reais) ──
+const USERS = [
+  { id: 1, nome: "Ana Silva", email: "ana@uninove.com", senha: "123", avatar: "AS" },
+  { id: 2, nome: "Beatriz Santos", email: "beatriz@uninove.com", senha: "123", avatar: "BS" },
+  { id: 3, nome: "Carla Oliveira", email: "carla@uninove.com", senha: "123", avatar: "CO" },
+  { id: 4, nome: "Daniela Lima", email: "daniela@uninove.com", senha: "123", avatar: "DL" },
+  { id: 5, nome: "Fernanda Costa", email: "fernanda@uninove.com", senha: "123", avatar: "FC" }
+];
+
+let currentUser = JSON.parse(localStorage.getItem("glow_user")) || null;
+
+// ── Navegação ──
 function showPage(pageId) {
-  // Esconder todas as páginas
-  document.querySelectorAll('.page').forEach(page => {
-    page.classList.remove('active');
-  });
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  document.querySelectorAll(".nav-link").forEach(l => l.classList.remove("active"));
   
-  // Mostrar a página selecionada
   const targetPage = document.getElementById(`page-${pageId}`);
   if (targetPage) {
-    targetPage.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    targetPage.classList.add("active");
+    window.scrollTo(0, 0);
   }
-
-  // Atualizar links da nav
-  document.querySelectorAll('.header__nav a').forEach(link => {
-    link.classList.remove('active');
-  });
   
-  // Se for a página de agendamentos, carregar a lista
-  if (pageId === 'meus-agendamentos') {
-    carregarAgendamentos();
+  // Atualiza link ativo
+  const activeLink = document.querySelector(`.nav-link[onclick*="${pageId}"]`);
+  if (activeLink) activeLink.classList.add("active");
+
+  if (pageId === "meus-agendamentos") renderAgendamentos();
+}
+
+// ── Sistema de Login ──
+function openLoginModal() {
+  if (currentUser) {
+    logout();
+  } else {
+    document.getElementById("loginModal").classList.add("active");
   }
-
-  // Re-inicializar ícones Lucide para novos elementos
-  if (window.lucide) lucide.createIcons();
 }
 
-/* =====================================================
-   SIMULAÇÃO DE AGENDAMENTO (LocalStorage)
-   ===================================================== */
-const form = document.getElementById('formAgendamento');
-const modalOverlay = document.getElementById('modalOverlay');
-
-if (form) {
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    const nome = document.getElementById('nome').value;
-    const telefone = document.getElementById('telefone').value;
-    const servico = document.getElementById('servico').value;
-    const data = document.getElementById('data').value;
-    const hora = document.getElementById('hora').value;
-
-    if (!nome || !telefone || !servico || !data || !hora) {
-      alert('Por favor, preencha todos os campos obrigatórios.');
-      return;
-    }
-
-    // Criar objeto de agendamento
-    const novoAgendamento = {
-      id: Date.now(),
-      nome,
-      telefone,
-      servico,
-      data,
-      hora,
-      status: 'Confirmado'
-    };
-
-    // Salvar no LocalStorage
-    const agendamentos = JSON.parse(localStorage.getItem('glow-agendamentos') || '[]');
-    agendamentos.push(novoAgendamento);
-    localStorage.setItem('glow-agendamentos', JSON.stringify(agendamentos));
-
-    // Mostrar modal de sucesso
-    modalOverlay.classList.add('active');
-    form.reset();
-  });
+function closeLoginModal() {
+  document.getElementById("loginModal").classList.remove("active");
 }
 
-function closeModal() {
-  modalOverlay.classList.remove('active');
-  showPage('meus-agendamentos');
+function logout() {
+  currentUser = null;
+  localStorage.removeItem("glow_user");
+  updateUI();
+  showPage("home");
 }
 
-function carregarAgendamentos() {
-  const lista = document.getElementById('listaAgendamentos');
-  const agendamentos = JSON.parse(localStorage.getItem('glow-agendamentos') || '[]');
+document.getElementById("formLogin").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const email = document.getElementById("loginEmail").value;
+  const senha = document.getElementById("loginSenha").value;
 
-  if (agendamentos.length === 0) {
-    lista.innerHTML = '<p class="empty-msg">Nenhum agendamento encontrado.</p>';
+  const user = USERS.find(u => u.email === email && u.senha === senha);
+
+  if (user) {
+    currentUser = user;
+    localStorage.setItem("glow_user", JSON.stringify(user));
+    updateUI();
+    closeLoginModal();
+    showSuccessModal("Bem-vinda de volta, " + user.nome + "!");
+  } else {
+    alert("E-mail ou senha incorretos. Tente: ana@uninove.com / 123");
+  }
+});
+
+function updateUI() {
+  const status = document.getElementById("userStatus");
+  if (currentUser) {
+    status.innerText = currentUser.nome.split(" ")[0];
+    document.getElementById("btnLogin").classList.add("logged-in");
+  } else {
+    status.innerText = "Entrar";
+    document.getElementById("btnLogin").classList.remove("logged-in");
+  }
+}
+
+// ── Agendamentos (LocalStorage) ──
+document.getElementById("formAgendamento").addEventListener("submit", (e) => {
+  e.preventDefault();
+  
+  if (!currentUser) {
+    openLoginModal();
     return;
   }
 
-  lista.innerHTML = agendamentos.map(ag => `
+  const novoAg = {
+    id: Date.now(),
+    userId: currentUser.id,
+    nome: document.getElementById("nome").value,
+    servico: document.getElementById("servico").value,
+    data: document.getElementById("data").value,
+    hora: document.getElementById("hora").value
+  };
+
+  const agendamentos = JSON.parse(localStorage.getItem("glow_agendamentos")) || [];
+  agendamentos.push(novoAg);
+  localStorage.setItem("glow_agendamentos", JSON.stringify(agendamentos));
+
+  e.target.reset();
+  showSuccessModal("Seu horário foi agendado com sucesso!");
+  showPage("meus-agendamentos");
+});
+
+function renderAgendamentos() {
+  const container = document.getElementById("listaAgendamentos");
+  const agendamentos = JSON.parse(localStorage.getItem("glow_agendamentos")) || [];
+  
+  const meusAg = agendamentos.filter(a => a.userId === (currentUser ? currentUser.id : null));
+
+  if (meusAg.length === 0) {
+    container.innerHTML = `<div class="empty-state"><p>${currentUser ? "Você ainda não tem agendamentos." : "Faça login para ver seus horários."}</p></div>`;
+    return;
+  }
+
+  container.innerHTML = meusAg.map(a => `
     <div class="agendamento-card">
       <div class="ag-info">
-        <strong>${ag.servico}</strong>
-        <p><i data-lucide="calendar"></i> ${ag.data} às ${ag.hora}</p>
-        <p><i data-lucide="user"></i> ${ag.nome}</p>
+        <h4>${a.servico}</h4>
+        <p><i data-lucide="calendar"></i> ${formatDate(a.data)} às ${a.hora}</p>
       </div>
-      <div class="ag-status">${ag.status}</div>
-      <button class="btn-cancel" onclick="cancelarAgendamento(${ag.id})">Cancelar</button>
+      <button class="btn-delete" onclick="deleteAgendamento(${a.id})" title="Cancelar">
+        <i data-lucide="trash-2"></i>
+      </button>
     </div>
-  `).join('');
-  
-  if (window.lucide) lucide.createIcons();
+  `).join("");
+  lucide.createIcons();
 }
 
-function cancelarAgendamento(id) {
-  if (confirm('Deseja realmente cancelar este agendamento?')) {
-    let agendamentos = JSON.parse(localStorage.getItem('glow-agendamentos') || '[]');
-    agendamentos = agendamentos.filter(ag => ag.id !== id);
-    localStorage.setItem('glow-agendamentos', JSON.stringify(agendamentos));
-    carregarAgendamentos();
+function deleteAgendamento(id) {
+  if (confirm("Deseja realmente cancelar este agendamento?")) {
+    let agendamentos = JSON.parse(localStorage.getItem("glow_agendamentos")) || [];
+    agendamentos = agendamentos.filter(a => a.id !== id);
+    localStorage.setItem("glow_agendamentos", JSON.stringify(agendamentos));
+    renderAgendamentos();
   }
 }
 
-/* =====================================================
-   MENU MOBILE
-   ===================================================== */
-const btnMenu = document.getElementById('btnMenu');
-const mobileNav = document.getElementById('mobileNav');
-
-if (btnMenu) {
-  btnMenu.addEventListener('click', () => {
-    btnMenu.classList.toggle('active');
-    mobileNav.classList.toggle('active');
-  });
+// ── Utilitários ──
+function formatDate(dateStr) {
+  const [year, month, day] = dateStr.split("-");
+  return `${day}/${month}/${year}`;
 }
 
-function closeMobileNav() {
-  btnMenu.classList.remove('active');
-  mobileNav.classList.remove('active');
+function showSuccessModal(msg) {
+  document.getElementById("successMsg").innerText = msg;
+  document.getElementById("successModal").classList.add("active");
 }
 
-/* =====================================================
-   HEADER — efeito ao rolar
-   ===================================================== */
-window.addEventListener('scroll', () => {
-  const header = document.querySelector('.header');
-  header.classList.toggle('scrolled', window.scrollY > 20);
+function closeSuccessModal() {
+  document.getElementById("successModal").classList.remove("active");
+}
+
+// Inicialização
+document.addEventListener("DOMContentLoaded", () => {
+  updateUI();
+  lucide.createIcons();
+  showPage("home");
 });
