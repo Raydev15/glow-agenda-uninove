@@ -9,9 +9,14 @@
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--nude); color: var(--texto); margin: 0; padding: 0; }
         header { background-color: var(--rosa); color: white; padding: 20px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .container { max-width: 800px; margin: 20px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        h2 { color: var(--rosa); border-bottom: 2px solid var(--nude); padding-bottom: 10px; }
-        .servicos { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
+        h2 { color: var(--rosa); border-bottom: 2px solid var(--nude); padding-bottom: 10px; margin-top: 30px; }
+        .servicos, .problemas, .feedback { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
         .card { flex: 1; min-width: 200px; padding: 15px; border: 1px solid var(--nude); border-radius: 8px; text-align: center; }
+        .problema-item { width: 100%; text-align: left; padding: 10px; border-left: 4px solid var(--rosa); background: #fffafa; margin-bottom: 5px; }
+        .faq-item { margin-bottom: 15px; }
+        .faq-item strong { display: block; color: var(--rosa); margin-bottom: 5px; }
+        .feedback-card { flex: 1; min-width: 250px; padding: 15px; background: var(--nude); border-radius: 8px; font-style: italic; }
+        .feedback-card span { display: block; margin-top: 10px; font-weight: bold; font-style: normal; color: var(--rosa); }
         form { display: flex; flex-direction: column; gap: 15px; }
         input, select, button { padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; }
         button { background-color: var(--rosa); color: white; border: none; cursor: pointer; font-weight: bold; transition: 0.3s; }
@@ -22,12 +27,22 @@
 <body>
     <header><h1>Glow Agenda ✨</h1></header>
     <div class="container">
+        <h2>5 Problemas que Resolvemos</h2>
+        <div class="problemas">
+            <div class="problema-item">1. Esquecimento de horários marcados.</div>
+            <div class="problema-item">2. Dificuldade em falar com o salão por telefone.</div>
+            <div class="problema-item">3. Falta de organização na agenda pessoal.</div>
+            <div class="problema-item">4. Perda de tempo esperando atendimento.</div>
+            <div class="problema-item">5. Incerteza sobre a disponibilidade de horários.</div>
+        </div>
+
         <h2>Nossos Serviços</h2>
         <div class="servicos">
             <div class="card"><h3>Cabelo</h3><p>Corte e Hidratação</p></div>
             <div class="card"><h3>Unhas</h3><p>Manicure e Pedicure</p></div>
             <div class="card"><h3>Estética</h3><p>Limpeza de Pele</p></div>
         </div>
+
         <h2>Agendar Horário</h2>
         <form id="formAgendar">
             <input type="text" placeholder="Seu Nome" required>
@@ -42,6 +57,30 @@
             <input type="time" required>
             <button type="submit">Confirmar Agendamento</button>
         </form>
+
+        <h2>Perguntas Frequentes (FAQ)</h2>
+        <div class="faq">
+            <div class="faq-item">
+                <strong>Como cancelo meu horário?</strong>
+                <p>Você pode cancelar entrando em contato conosco pelo WhatsApp com 24h de antecedência.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Quais as formas de pagamento?</strong>
+                <p>Aceitamos dinheiro, cartões de débito/crédito e PIX.</p>
+            </div>
+        </div>
+
+        <h2>O que dizem nossas clientes</h2>
+        <div class="feedback">
+            <div class="feedback-card">
+                "Adorei a facilidade de marcar meu horário pelo site, muito prático!"
+                <span>— Maria Silva</span>
+            </div>
+            <div class="feedback-card">
+                "O atendimento é maravilhoso e o ambiente super aconchegante."
+                <span>— Ana Oliveira</span>
+            </div>
+        </div>
     </div>
     <footer>&copy; 2026 Glow Agenda - Projeto Uninove v1</footer>
     <script>
