@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glow Agenda ✨ — Beleza & Bem-Estar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="header__inner">
+      <div class="header__logo" onclick="showPage('home')">
+        <i data-lucide="sparkles" class="logo-icon"></i>
+        <span class="logo-text">Glow Agenda</span>
+      </div>
+      <nav class="header__nav">
+        <a href="javascript:void(0)" onclick="showPage('home')">Início</a>
+        <a href="javascript:void(0)" onclick="showPage('servicos')">Serviços</a>
+        <a href="javascript:void(0)" onclick="showPage('agendar')">Agendar</a>
+        <a href="javascript:void(0)" onclick="showPage('meus-agendamentos')">Meus Horários</a>
+      </nav>
+      <button class="btn-menu" id="btnMenu" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobileNav">
+      <a href="javascript:void(0)" onclick="showPage('home'); closeMobileNav()">Início</a>
+      <a href="javascript:void(0)" onclick="showPage('servicos'); closeMobileNav()">Serviços</a>
+      <a href="javascript:void(0)" onclick="showPage('agendar'); closeMobileNav()">Agendar</a>
+      <a href="javascript:void(0)" onclick="showPage('meus-agendamentos'); closeMobileNav()">Meus Horários</a>
+    </nav>
+  </header>
+
+  <!-- ===== PÁGINA: HOME ===== -->
+  <main class="page active" id="page-home">
+    <section class="hero">
+      <div class="hero__content">
+        <p class="hero__eyebrow">Bem-vinda ao seu espaço de beleza</p>
+        <h1 class="hero__title">Realce sua<br /><em>beleza natural</em></h1>
+        <p class="hero__subtitle">
+          Agende seu horário de forma rápida, fácil e elegante. Nossos
+          profissionais estão prontos para cuidar de você.
+        </p>
+        <div class="hero__actions">
+          <button onclick="showPage('agendar')" class="btn btn--primary">Agendar Agora</button>
+          <button onclick="showPage('servicos')" class="btn btn--outline">Ver Serviços</button>
+        </div>
+      </div>
+      <div class="hero__visual">
+        <div class="hero__blob"></div>
+        <div class="hero__card hero__card--1">
+          <i data-lucide="scissors" class="card-icon"></i>
+          <span>Cabelo</span>
+        </div>
+        <div class="hero__card hero__card--2">
+          <i data-lucide="palette" class="card-icon"></i>
+          <span>Unhas</span>
+        </div>
+        <div class="hero__card hero__card--3">
+          <i data-lucide="flower-2" class="card-icon"></i>
+          <span>Estética</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== PÁGINA: SERVIÇOS ===== -->
+  <main class="page" id="page-servicos">
+    <section class="servicos">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">O que oferecemos</p>
+          <h2 class="section-title">Nossos Serviços</h2>
+          <p class="section-subtitle">
+            Cada detalhe pensado para realçar sua beleza com cuidado e sofisticação.
+          </p>
+        </div>
+        <div class="servicos__grid">
+          <div class="servico-card">
+            <div class="servico-card__icon"><i data-lucide="scissors"></i></div>
+            <h3>Cabelo</h3>
+            <ul>
+              <li>Corte feminino</li>
+              <li>Coloração & mechas</li>
+              <li>Hidratação profunda</li>
+              <li>Escova modeladora</li>
+            </ul>
+            <span class="servico-card__tag">A partir de R$ 80</span>
+          </div>
+          <div class="servico-card servico-card--featured">
+            <div class="servico-card__badge">Popular</div>
+            <div class="servico-card__icon"><i data-lucide="sparkles"></i></div>
+            <h3>Unhas</h3>
+            <ul>
+              <li>Manicure completa</li>
+              <li>Pedicure completa</li>
+              <li>Gel & acrigel</li>
+              <li>Nail art personalizada</li>
+            </ul>
+            <span class="servico-card__tag">A partir de R$ 45</span>
+          </div>
+          <div class="servico-card">
+            <div class="servico-card__icon"><i data-lucide="eye"></i></div>
+            <h3>Sobrancelha & Cílios</h3>
+            <ul>
+              <li>Design de sobrancelha</li>
+              <li>Henna de sobrancelha</li>
+              <li>Extensão de cílios</li>
+              <li>Lash lifting</li>
+            </ul>
+            <span class="servico-card__tag">A partir de R$ 35</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== PÁGINA: AGENDAR ===== -->
+  <main class="page" id="page-agendar">
+    <section class="agendar">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Reserve seu horário</p>
+          <h2 class="section-title">Agendar Atendimento</h2>
+        </div>
+        <div class="agendar__wrapper">
+          <form class="agendar__form" id="formAgendamento" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nome">Nome completo <span class="required">*</span></label>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome completo" />
+                <span class="form-error" id="erroNome"></span>
+              </div>
+              <div class="form-group">
+                <label for="telefone">Telefone / WhatsApp <span class="required">*</span></label>
+                <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-0000" />
+                <span class="form-error" id="erroTelefone"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="servico">Serviço desejado <span class="required">*</span></label>
+              <select id="servico" name="servico">
+                <option value="">Selecione um serviço</option>
+                <option value="Corte feminino">Corte feminino</option>
+                <option value="Manicure completa">Manicure completa</option>
+                <option value="Design de sobrancelha">Design de sobrancelha</option>
+              </select>
+              <span class="form-error" id="erroServico"></span>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="data">Data <span class="required">*</span></label>
+                <input type="date" id="data" name="data" />
+                <span class="form-error" id="erroData"></span>
+              </div>
+              <div class="form-group">
+                <label for="hora">Horário <span class="required">*</span></label>
+                <select id="hora" name="hora">
+                  <option value="">Selecione o horário</option>
+                  <option value="09:00">09:00</option>
+                  <option value="10:00">10:00</option>
+                  <option value="11:00">11:00</option>
+                  <option value="14:00">14:00</option>
+                  <option value="15:00">15:00</option>
+                </select>
+                <span class="form-error" id="erroHora"></span>
+              </div>
+            </div>
+            <div id="formFeedback" class="form-feedback" role="alert"></div>
+            <button type="submit" class="btn btn--primary btn--full" id="btnAgendar">
+              Confirmar Agendamento
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== PÁGINA: MEUS AGENDAMENTOS ===== -->
+  <main class="page" id="page-meus-agendamentos">
+    <section class="container">
+      <div class="section-header">
+        <h2 class="section-title">Meus Horários</h2>
+        <p class="section-desc">Gerencie seus agendamentos salvos localmente.</p>
+      </div>
+      <div id="listaAgendamentos" class="agendamentos-grid">
+        <!-- Inserido via JS -->
+        <p class="empty-msg">Nenhum agendamento encontrado.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom">
+        <p>&copy; 2026 Glow Agenda. Projeto Acadêmico Uninove.</p>
+        <p>Feito com <i data-lucide="heart" class="heart-icon"></i> para realçar sua beleza</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== MODAL DE SUCESSO ===== -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal__icon"><i data-lucide="check-circle-2"></i></div>
+      <h3>Agendamento Confirmado!</h3>
+      <p>Seu horário foi salvo com sucesso no seu navegador.</p>
+      <button class="btn btn--primary" onclick="closeModal()">Fechar</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    lucide.createIcons();
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+  </script>
+</body>
+</html>

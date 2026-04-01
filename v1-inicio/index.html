@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Agenda v1 — Início</title>
+    <style>
+        :root { --rosa: #E89AB0; --nude: #F5E6E8; --dourado: #D4AF37; --texto: #4A4A4A; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--nude); color: var(--texto); margin: 0; padding: 0; }
+        header { background-color: var(--rosa); color: white; padding: 20px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .container { max-width: 800px; margin: 20px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        h2 { color: var(--rosa); border-bottom: 2px solid var(--nude); padding-bottom: 10px; }
+        .servicos { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
+        .card { flex: 1; min-width: 200px; padding: 15px; border: 1px solid var(--nude); border-radius: 8px; text-align: center; }
+        form { display: flex; flex-direction: column; gap: 15px; }
+        input, select, button { padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; }
+        button { background-color: var(--rosa); color: white; border: none; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        button:hover { background-color: #d4859b; }
+        footer { text-align: center; padding: 20px; font-size: 0.8rem; color: #888; }
+    </style>
+</head>
+<body>
+    <header><h1>Glow Agenda ✨</h1></header>
+    <div class="container">
+        <h2>Nossos Serviços</h2>
+        <div class="servicos">
+            <div class="card"><h3>Cabelo</h3><p>Corte e Hidratação</p></div>
+            <div class="card"><h3>Unhas</h3><p>Manicure e Pedicure</p></div>
+            <div class="card"><h3>Estética</h3><p>Limpeza de Pele</p></div>
+        </div>
+        <h2>Agendar Horário</h2>
+        <form id="formAgendar">
+            <input type="text" placeholder="Seu Nome" required>
+            <input type="tel" placeholder="Seu Telefone" required>
+            <select required>
+                <option value="">Selecione o Serviço</option>
+                <option>Cabelo</option>
+                <option>Unhas</option>
+                <option>Estética</option>
+            </select>
+            <input type="date" required>
+            <input type="time" required>
+            <button type="submit">Confirmar Agendamento</button>
+        </form>
+    </div>
+    <footer>&copy; 2026 Glow Agenda - Projeto Uninove v1</footer>
+    <script>
+        document.getElementById('formAgendar').onsubmit = (e) => {
+            e.preventDefault();
+            alert('Agendamento realizado com sucesso! (Versão v1 - Início)');
+        };
+    </script>
+</body>
+</html>
